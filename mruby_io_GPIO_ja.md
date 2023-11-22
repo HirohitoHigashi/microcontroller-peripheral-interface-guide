@@ -181,3 +181,32 @@ gpio1.setmode( GPIO::PULL_UP )
 # 入力に切り替え、内部プルアップを有効にする。
 gpio1.setmode( GPIO::IN|GPIO::PULL_UP )
 ```
+
+---
+
+### irq( trigger, bounce_time_ms:10 ) {|trigger|} -> nil
+
+- GPIO端子に変化があった時の処理を登録する。
+- trigger は、以下の定数を指定し、`|` で接続して複数指定できる。
+
+定数
+```ruby
+GPIO::EDGE_RISE    # 立ち上がりエッジ
+GPIO::EDGE_FALL    # 立ち下がりエッジ
+```
+
+使用例
+```ruby
+gpio1.irq( GPIO::EDGE_RISE ) {|trg|
+  puts "Trigger #{trg}"
+}
+```
+
+機種依存
+
+実装が難しいケースが考えられ、当メソッドはオプションとする。
+
+
+ノート
+
+将来的には戻り値を定義し、それを使って select(POSIX), epoll(Linux) のような事ができたら良いなと考えている。

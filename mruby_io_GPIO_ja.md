@@ -184,10 +184,11 @@ gpio1.setmode( GPIO::IN|GPIO::PULL_UP )
 
 ---
 
-### irq( trigger, bounce_time_ms:10 ) {|trigger|} -> nil
+### irq( trigger, bounce_time_ms:10 ) {|trigger| } -> void
 
 - GPIO端子に変化があった時の処理を登録する。
 - trigger は、以下の定数を指定し、`|` で接続して複数指定できる。
+- ブロックへの引数は、以下の定数のいずれかが渡される。
 
 定数
 ```ruby
